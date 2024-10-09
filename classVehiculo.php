@@ -1,44 +1,31 @@
 <?php
-
-class Vehiculo {
+require_once("classCliente.php");
+class vehiculo extends Cliente{
     protected $placa;
     protected $marca;
     protected $color;
-    protected $nombreCliente;
-    protected $documentoCliente;
-    protected $horaIngreso;
-    protected $horaSalida;
+    protected $tipo;
+
+    public function __construct($nombreCliente , $documentoCliente,$placa,$marca,$color,$tipo)
     
-    public function __construct($placa, $marca, $color, $nombreCliente, $documentoCliente, $horaIngreso) {
+    {
+        parent::__construct($nombreCliente , $documentoCliente);
+
         $this->placa = $placa;
         $this->marca = $marca;
         $this->color = $color;
-        $this->nombreCliente = $nombreCliente;
-        $this->documentoCliente = $documentoCliente;
-        $this->horaIngreso = $horaIngreso;
-        $this->horaSalida = $horaSalida;
+        $this->tipo = $tipo;
     }
-    
-    public function calcularValorPagar($costoPorHora) {
-        if ($this->horaSalida === $horaSalida ) {
-            return ;
-        }
+    public function getDatosVehiculo(){
+        $arrayVehiculo = array(
+            'nombre'=> $this-> nombreCliente ,
+            'documento'=> $this-> documentoCliente ,
+            'placa'=> $this-> placa ,
+            'marca'=> $this-> marca ,
+            'color'=> $this-> color ,
+            'tipo'=>$this->tipo
 
-        $horasEstacionado = ceil((strtotime($this->horaSalida) - strtotime($this->horaIngreso)) / 3600);
-        return $horasEstacionado * $costoPorHora;
-    }
-
-    public function registrarSalida($horaSalida) {
-        $this->horaSalida = $horaSalida;
-    }
-
-    public function obtenerDetalles() {
-        return "Placa: {$this->placa}, Marca: {$this->marca}, Color: {$this->color}, Cliente: {$this->nombreCliente}, Documento: {$this->documentoCliente}, Hora de Ingreso: {$this->horaIngreso}.";
-    }
+        );
+        return  $arrayVehiculo;
 }
-
-
-
-    
-
-
+}
